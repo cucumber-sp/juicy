@@ -6,6 +6,6 @@ import com.juicy.lib.JuicyActivity
 class MainActivity : JuicyActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        openUrl("https://google.com")
+        openUrl("https://juicy-sample.vercel.app/")
     }
 }
