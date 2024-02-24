@@ -1,7 +1,8 @@
 plugins {
-    id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("com.android.library")
 }
+
 
 android {
     namespace = "com.juicy.lib"
@@ -9,13 +10,16 @@ android {
 
     defaultConfig {
         minSdk = 24
+    }
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    lint{
+        disable.add("Instantiatable")
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -32,8 +36,4 @@ android {
 }
 
 dependencies {
-
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
 }

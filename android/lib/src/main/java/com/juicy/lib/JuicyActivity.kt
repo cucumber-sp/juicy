@@ -1,14 +1,13 @@
 package com.juicy.lib
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.webkit.ServiceWorkerClient
 import android.webkit.ServiceWorkerController
 import android.webkit.WebView
-import androidx.activity.addCallback
-import androidx.appcompat.app.AppCompatActivity
 
-open class JuicyActivity : AppCompatActivity() {
+open class JuicyActivity : Activity() {
 
     private lateinit var webView: WebView
 
@@ -25,18 +24,18 @@ open class JuicyActivity : AppCompatActivity() {
         webView = WebView(applicationContext)
         webView.settings.javaScriptEnabled = true
 
-        onBackPressedDispatcher.addCallback{
-            if (webView.canGoBack())
-                webView.goBack()
-            else
-                moveTaskToBack(true)
-        }
-
         setContentView(webView)
     }
 
     fun openUrl(url: String){
         webView.loadUrl(url)
+    }
+
+    override fun onBackPressed() {
+        if (webView.canGoBack())
+            webView.goBack()
+        else
+            moveTaskToBack(true)
     }
 
 }
